@@ -20,7 +20,7 @@ node basenode {
         $root_email = "roots@example42.com"
 
 # Syslog servers. Can be an array.
-        $syslog_servers = ["10.42.42.15"]
+        $syslog_server = "10.42.42.15"
 
         $timezone = "Europe/Rome"
         $ntp_server = "ntp.example42.com"
@@ -40,9 +40,10 @@ node basenode {
 node 'puppet.example42.com' inherits basenode {
 	include general
 	
-	include foreman
+#	include foreman
 	include apache
-	include puppet::dashboard
+	include puppet::master
+#	include puppet::dashboard
 #	include puppet::foreman
 #	include puppet::foreman::externalnodes
 
@@ -73,6 +74,7 @@ node 'syslog.example42.com' inherits basenode {
                 source_path      => "http://download.adiscon.com/phplogcon/",
                 source_filename  => "phplogcon-2.7.2.tar.gz",
                 destination_dir  => "/var/www/html",
+                extracted_dir    => "phplogcon-2.7.2",
         }
 }
 
@@ -147,6 +149,20 @@ node 'solaristest.example42.com' inherits basenode {
 }
 
 
+node 'ubuntu804.example42.com' inherits basenode {
+	include general
+}
+
+node 'ubuntu910.example42.com' inherits basenode {
+	include general
+}
+
+node 'debian5.example42.com' inherits basenode {
+	include general
+}
+
+
+
 
 
 ## PRODUCTION -  Internet Services
@@ -209,11 +225,11 @@ node 'gw.example42.com' inherits basenode {
         $role = "gateway"
 #       $ipforward = "yes"
         $ntop_password = "CHANGE:Password"
-        augeasconfig { sysctl:
+        config { sysctl:
                 file      => "/etc/sysctl.conf",
                 parameter => "net.ipv4.ip_forward",
                 value     => "1",
-                lens      => "@Sysctl",
+                engine    => "augeas",
         }
 
         include general

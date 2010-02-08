@@ -4,8 +4,6 @@ import "nodes.pp"
 
 Exec { path => "/bin:/sbin:/usr/bin:/usr/sbin" }
 
-# Package { provider => "yum" }
-
-# Filbuckets
+# Filebuckets
 filebucket { main: server => puppet }
 filebucket { local: path => "/var/lib/puppet/clientbucket" }

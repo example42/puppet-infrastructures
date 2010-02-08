@@ -22,9 +22,9 @@ class general {
 #       include clock
 #       include cron
 
-# Syslog Management
+# Syslog Logging to a Central server
 # Needs:  $syslog_server
-       include syslog 
+       include syslog::central 
 
        include rootmail
 #       include func
@@ -56,10 +56,10 @@ include backup::target
 # Monitor Host
 #include monitor::target
 
-	collectd::plugin { "network":
-		collectd_server => "10.42.42.9",
-	}
-	collectd::plugin { "general": }
+#	collectd::plugin { "network":
+#		collectd_server => "10.42.42.9",
+#	}
+#	collectd::plugin { "general": }
 
 
 }
