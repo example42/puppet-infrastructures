@@ -42,8 +42,8 @@ node 'puppet.example42.com' inherits basenode {
 	
 #	include foreman
 	include apache
-	include puppet::master
-#	include puppet::dashboard
+#	include puppet::master
+	include puppet::dashboard
 #	include puppet::foreman
 #	include puppet::foreman::externalnodes
 
@@ -130,24 +130,9 @@ node 'cacti.example42.com' inherits basenode {
 
 node 'test.example42.com' inherits basenode {
 	include general
-
 	include backup::server
 	include monitor::server
 }
-
-node 'debiantest.example42.com' inherits basenode {
-	include general
-}
-
-node 'opensusetest.example42.com' inherits basenode {
-	include general
-}
-
-node 'solaristest.example42.com' inherits basenode {
-	include minimal
-#	include general
-}
-
 
 node 'ubuntu804.example42.com' inherits basenode {
 	include general
@@ -161,7 +146,21 @@ node 'debian5.example42.com' inherits basenode {
 	include general
 }
 
+node 'redhat5.example42.com' inherits basenode {
+	include general
+}
 
+node 'opensolaris.example42.com' inherits basenode {
+	include general
+}
+
+node 'solaris10.example42.com' inherits basenode {
+	include general
+}
+
+node 'freebsd8.example42.com' inherits basenode {
+	include general
+}
 
 
 
