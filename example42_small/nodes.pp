@@ -196,7 +196,7 @@ node 'mail.example42.com' inherits basenode {
 
 
 # Generic Httpd server
-node 'www.example42.man' inherits basenode {
+node 'www.example42.com' inherits basenode {
         include general
 	include apache
 }
@@ -247,4 +247,15 @@ node 'vpn.example42.com' inherits basenode {
         include rip::example42
 }
 
+
+# Oracle Cluster (RHEL5)
+node 'oracle01.example42.com' inherits basenode {
+        include minimal
+	include oracle
+}
+
+node 'oracle02.example42.com' inherits basenode {
+        include minimal
+	include oracle
+}
 
