@@ -14,9 +14,6 @@ class general {
 # Sysctl management. Define "$my_ipforward = yes" for activating IP forwarding
         include sysctl
 
-# Nagios NRPE agent. Default dettings. Configure at least allowed_hosts to enable access from nagios server
-#	include nrpe
-
 # SNMP Daemon - Default settings
 #	include snmpd
 
@@ -54,7 +51,7 @@ class general {
 
 # Includes of a general testing baseline
 # Used for... testing. Should be uncommented, generally
-#	include testing
+	include testing
 
 }
 

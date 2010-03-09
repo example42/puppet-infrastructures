@@ -7,3 +7,6 @@ Exec { path => "/bin:/sbin:/usr/bin:/usr/sbin" }
 # Filebuckets
 filebucket { main: server => puppet }
 filebucket { local: path => "/var/lib/puppet/clientbucket" }
+
+class main {
+}

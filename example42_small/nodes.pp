@@ -4,11 +4,22 @@
 # and the host nodes that inherit it
 
 node basenode {
-# Example42 approach permits to manage different projects (puppet nodes configurations) by the same puppetmaster:
-# Different Puppet environments can map to different project modules.
         $project = "example42"
 
+# Activates usage of Extended Classes
+	$monitor = "yes"
+	$monitor_collectd = "yes"
+	$monitor_munin = "yes"
+	$monitor_nagios = "yes"
+	$backup = "yes"
+	$backup_rsyncssh = "yes"
+	$backup_rsync = "yes"
+	$firewall = "no"
+
+# Puppet Master - required
         $puppet_server = "puppet.example42.com"
+
+# Network settings
         $dns_servers = ["10.42.42.1","10.42.10.1"]
         $domain = "example42.com"
         $smtp_server = "mail.example42.com"
@@ -22,10 +33,12 @@ node basenode {
 # Syslog servers. Can be an array.
         $syslog_server = "10.42.42.15"
 
+# Time settings
         $timezone = "Europe/Rome"
         $ntp_server = "ntp.example42.com"
 
         $update = "no"   # Auto Update packages (yes|no)
+
 
 # Munin central server
         $munin_allow = "10.42.42.9"
@@ -40,11 +53,10 @@ node basenode {
 node 'puppet.example42.com' inherits basenode {
 	include general
 	
-#	include foreman
 	include apache
 #	include puppet::master
-	include puppet::dashboard
-#	include puppet::foreman
+#	include puppet::dashboard
+	include puppet::foreman
 #	include puppet::foreman::externalnodes
 
 	include ssh::auth::keymaster
@@ -124,6 +136,10 @@ node 'cacti.example42.com' inherits basenode {
         include mysql
 }
 
+node 'nagios.example42.com' inherits basenode {
+	include general
+	include monitor::server::nagios
+}
 
 
 ## TESTING HOSTS (Used for modules testing)
@@ -132,6 +148,8 @@ node 'test.example42.com' inherits basenode {
 	include general
 	include backup::server
 	include monitor::server
+
+	include nagios
 }
 
 node 'ubuntu804.example42.com' inherits basenode {
@@ -144,6 +162,8 @@ node 'ubuntu910.example42.com' inherits basenode {
 
 node 'debian5.example42.com' inherits basenode {
 	include general
+	include testing
+	include apache::disable
 }
 
 node 'redhat5.example42.com' inherits basenode {
@@ -159,6 +179,10 @@ node 'solaris10.example42.com' inherits basenode {
 }
 
 node 'freebsd8.example42.com' inherits basenode {
+	include general
+}
+
+node 'opensusetest.example42.com' inherits basenode {
 	include general
 }
 
