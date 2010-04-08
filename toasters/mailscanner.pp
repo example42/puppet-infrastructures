@@ -1,4 +1,4 @@
-# Postfix + Mysql + Dovecot + MailScanner + Mailwatch + Clamav + SpamAssassing
+# Postfix + Mysql + Dovecot + MailScanner + Mailwatch + Clamav + SpamAssassin
 # Example42 toaster
 
 # Tested on Centos5/RedHat5 
@@ -18,13 +18,15 @@ $mailscanner_mysqldbname = "mailscanner"
 $mailscanner_adminuser = "admin"
 $mailscanner_adminpassword = "admin"
 
+# General setups
+Exec { path => "/bin:/sbin:/usr/bin:/usr/sbin" }
+import "common"
 
+# Toaster componenets
 include mysql
 include postfix::mysql
 include postfix::postfixadmin
 include dovecot::mysql
-
 include mailscanner::mailwatch
 include clamav
 clamav::instance { "mailscanner": }
-
