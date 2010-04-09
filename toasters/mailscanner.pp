@@ -24,6 +24,7 @@ import "common"
 
 # Toaster componenets
 include mysql
+include sendmail::absent
 include postfix::mysql
 include postfix::postfixadmin
 include dovecot::mysql
