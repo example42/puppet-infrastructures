@@ -24,10 +24,9 @@ import "common"
 
 # Toaster componenets
 include mysql
-include sendmail::absent
+include sendmail::disable
 include postfix::mysql
 include postfix::postfixadmin
 include dovecot::mysql
 include mailscanner::mailwatch
 include clamav
-clamav::instance { "mailscanner": }
