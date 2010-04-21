@@ -30,3 +30,4 @@ include postfix::postfixadmin
 include dovecot::mysql
 include mailscanner::mailwatch
 include clamav
+include squirrelmail
