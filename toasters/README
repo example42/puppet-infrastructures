@@ -33,9 +33,9 @@ yum install -y git
 
 # Install Puppet and (optional) be sure that it doesn't run as a service. Install git.
 apt-get update
-apt-get install puppet
+apt-get install -y puppet
 update-rc.d -f puppet remove
-apt-get install git-core
+apt-get install -y git-core
 
 
 ##################################################################
