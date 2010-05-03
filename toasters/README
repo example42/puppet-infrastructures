@@ -84,6 +84,15 @@ apt-get install -y git-core
 ####################################################
 
 
+##### SLES 11 ######################################
+# On Suse Enterprise Linux 11 Puppety 0.34 is provided by default
+# For 0.25 you need to add an alternative repo, add it to yourzypper repos:
+wget http://download.opensuse.org/repositories/system:/management/SLE_11/system:management.repo -O "/etc/zypp/repos.d/system:management.repo"
+# Then you can install Puppet (note that the ruby packages is searched in the installation medium)
+zypper install -y puppet
+####################################################
+
+
 ####################################################
 ### DOWNLOAD, CUSTOMIZE AND USE EXAMPLE42 MODULES
 ### (Procedure is the same on different OS) 
