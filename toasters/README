@@ -1,9 +1,14 @@
 # EXAMPLE42 PUPPET TOASTERS #
 
-### PUPPET AND GIT INSTALLATION
+####################################################
+### PUPPET 0.25 AND GIT INSTALLATION
 ### (Procedure changes on different OS) 
+####################################################
+# In order to use the full set of Example42 modules you NEED Puppet Version 0.25.X.
+# In some OS the default Puppet version is 0.24.X so you need some extra work to get 0.25
 
-##### REDHAT 5 / CENTOS 5 #####
+
+##### REDHAT 5 / CENTOS 5 ##########################
 # Install EPEL extra repository
 rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/i386/epel-release-5-3.noarch.rpm
 
@@ -11,9 +16,10 @@ rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/i386/epel-release-5-3.noar
 yum install -y puppet
 chkconfig puppet off
 yum install -y git
+####################################################
 
 
-##### REDHAT 6 #####
+##### REDHAT 6 #####################################
 # Install EPEL extra repository (beta)
 rpm -Uvh http://download.fedora.redhat.com/pub/epel/beta/6/i386/epel-release-6-1.noarch.rpm
 
@@ -21,43 +27,72 @@ rpm -Uvh http://download.fedora.redhat.com/pub/epel/beta/6/i386/epel-release-6-1
 yum install -y puppet
 chkconfig puppet off
 yum install -y git
+####################################################
 
 
-##### UBUNTU / DEBIAN 5 #####
-# You NEED Puppet Version 0.25.X.
-# In some Ubuntu/Debain versions default Puppet version is 0.24.X
-# On Ubuntu 8.04 (hardy):
-# echo "deb http://ppa.launchpad.net/stgraber/puppet/ubuntu hardy main" >> /etc/apt/sources.list.d/puppet.list 
-# On Ubuntu 10.04 (lucid) there's already Puppet 0.25.X
-# On Debian 5 (lenny) you need to use the testing repo
+##### UBUNTU 8.04 LTS ##############################
+# Add the custom Puppet backport repo by Stephane Graber:
+echo "deb http://ppa.launchpad.net/stgraber/puppet/ubuntu hardy main" >> /etc/apt/sources.list.d/puppet.list 
+# and then import its signing key:
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E7716B13
 
-# Install Puppet and (optional) be sure that it doesn't run as a service. Install git.
+# Once you're sure you have a Puppet 0.25 available in your apt repo, install Puppet and Git:
 apt-get update
 apt-get install -y puppet
 update-rc.d -f puppet remove
 apt-get install -y git-core
+####################################################
 
 
-##################################################################
-### DOWNLOAD, CUSTOMIZE AND USE THE TOASTER
+##### UBUNTU 10.04 LTS #############################
+# On Ubuntu 10.04 (lucid) there's already Puppet 0.25.X
+apt-get update
+apt-get install -y puppet
+update-rc.d -f puppet remove
+apt-get install -y git-core
+####################################################
+
+
+##### DEBIAN 5 #####################################
+# On Debian 5 (lenny) you need to use the backports repo
+# Add backports to your apt sources:
+echo "deb http://www.backports.org/debian lenny-backports main contrib non-free" >> /etc/apt/sources.list.d/backports.list
+# apt-get update, install backports keys and apt-get update again:
+apt-get update
+apt-get install -y debian-backports-keyring
+apt-get update
+# Install Puppet from the backports repo
+apt-get -t lenny-backports install -y puppet
+# Then install git
+apt-get install -y git-core
+####################################################
+
+
+##### DEBIAN 4 #####################################
+# On Debian 4 (etch) you MAY TRY to the lenny-backports repo
+# Quick tests seemed to provide a working Puppet 0.25 installation, but ... well take it definitvely AS IS
+# Add lenny-backports to your apt sources:
+echo "deb http://www.backports.org/debian lenny-backports main contrib non-free" >> /etc/apt/sources.list.d/backports.list
+# apt-get update, install backports keys and apt-get update again:
+apt-get update
+apt-get install -y debian-backports-keyring
+apt-get update
+# Install Puppet from the backports repo
+apt-get -t lenny-backports install -y puppet
+# Then install git
+apt-get install -y git-core
+####################################################
+
+
+####################################################
+### DOWNLOAD, CUSTOMIZE AND USE EXAMPLE42 MODULES
 ### (Procedure is the same on different OS) 
-##################################################################
-
-# Download via git Example42 puppet modules
+####################################################
+# Download via git Example42 puppet modules and sample infrastructures
 git clone git://www.example42.com/example42modules /etc/puppet/modules
 git clone git://www.example42.com/example42infrastructures /etc/puppet/manifests
 
-# Edit eventually the variables in the toaster you want. 
-
-# Run Puppet on the selected toaster
-# IE: puppet -v /etc/puppet/manifests/toasters/oracle/oracle.pp
-
-# You may need to re-run Puppet if there have been dependencies issues.
-# You can/should do this as many times as you want, until nothing new happens.
-
-# If you modify manually the files managed by Puppet 
-# DO NOT run Puppet anymore, as it re-establishes the system status (packages, configs...)
-# that has been defined in its modules and manifests.
-# So, you may decide to remove Puppet from your system and keep on managing it manually:
-# rpm -e puppet # (On RedHat/Centos)
-# apt-get remove puppet # (On Debian/Ubuntu)
+# If you have already a directory /etc/puppet/manifest (Debian packages create it empty) you have to remove it
+# before launching git clone:
+rmdir /etc/puppet/manifests
+git clone git://www.example42.com/example42infrastructures /etc/puppet/manifests
