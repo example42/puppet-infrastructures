@@ -1,0 +1,18 @@
+# PUPPET MASTER SETUP - HOW TO USE
+
+# Follow instructions in toasters/README for installation of Puppet and git on your system.
+
+# Then download via git Example42 puppet modules
+git clone git://www.example42.com/example42modules /etc/puppet/modules
+git clone git://www.example42.com/example42infrastructures /etc/puppet/manifests
+
+# Edit eventually the variables and the classes to include in puppet/init.pp
+# vi /etc/puppet/manifests/toasters/puppet/init.pp
+
+# Run Puppet on puppet/init.pp
+puppet -v /etc/puppet/manifests/toasters/puppet/init.pp
+
+# You may need to re-run Puppet if there have been dependencies issues.
+# You can/should do this as many times as you want, until nothing new happens.
+puppet -v /etc/puppet/manifests/toasters/puppet/init.pp
+
