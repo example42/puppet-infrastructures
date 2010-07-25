@@ -5,6 +5,11 @@
 Exec { path => "/bin:/sbin:/usr/bin:/usr/sbin" }
 import "common"
 
+# The name of the puppet master
+# Note: For the toaster setup of the same PuppetMaster you can leave its $fqdn fact BUT 
+# remember to define it with the Puppet Masters' actual fqdn in your Puppet configurations for the clients
+$puppet_server = "$fqdn" 
+
 # Toaster components
 # Choose the Puppet Master setup you want (only one!)
 
