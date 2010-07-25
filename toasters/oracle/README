@@ -6,15 +6,15 @@
 git clone git://www.example42.com/example42modules /etc/puppet/modules
 git clone git://www.example42.com/example42infrastructures /etc/puppet/manifests
 
-# Edit eventually the variables in oracle.pp
-# vi /etc/puppet/manifests/toasters/oracle/oracle.pp
+# Edit eventually the variables in init.pp
+# vi /etc/puppet/manifests/toasters/oracle/init.pp
 
-# Run Puppet on the oracle.pp  
-puppet -v /etc/puppet/manifests/toasters/oracle/oracle.pp
+# Run Puppet on the oracle init.pp  
+puppet -v /etc/puppet/manifests/toasters/oracle/init.pp
 
 # You may need to re-run Puppet if there have been dependencies issues.
 # You can/should do this as many times as you want, until nothing new happens.
-puppet -v /etc/puppet/manifests/toasters/oracle/oracle.pp
+puppet -v /etc/puppet/manifests/toasters/oracle/init.pp
 
 # If you modify manually the files managed by Puppet
 # DO NOT run Puppet anymore, as it re-establishes the system status (packages, configs...)
