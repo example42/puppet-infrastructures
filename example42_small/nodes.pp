@@ -18,6 +18,8 @@ node basenode {
 
 # Puppet Master - required
         $puppet_server = "puppet.example42.com"
+# ACLS for Puppet Server
+        $puppet_allow = [ "example42.com" , "10.42.42.0" ]
 
 # Network settings
         $dns_servers = ["10.42.42.1","10.42.10.1"]
