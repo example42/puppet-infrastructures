@@ -21,16 +21,13 @@ $puppet_allow = ["*.example42.com",  "10.42.42.0" ]
 # Toaster components
 # Choose the Puppet Master setup you want (only one!)
 
-# Plain Puppet Master Server
-# include puppet::master
+# Define if you want to use a node tool (with or without external nodes support)
+# Possible values are "foreman" or "dashboard". Default is no tool.
+$puppet_nodetool = "dashboard"
 
-# Puppet Master + the Foreman (without external nodes support)
-# include puppet::foreman
-# Puppet Master + the Foreman (WITH external nodes support)
-include puppet::foreman::externalnodes
+# Define if you want to enable external nodes support (you define nodes via the tools' web interface and not in Puppet language)
+# Note that if you enable external nodes support you MUST define a $puppet_nodetool
+$external_nodes = "no"
 
-# Puppet Master + Dashboard (without external nodes support)
-# include puppet::dashboard
-# Puppet Master + Dashboard (WITH external nodes support)
-# include puppet::dashboard::externalnodes
+include puppet::master
 
