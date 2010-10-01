@@ -30,4 +30,4 @@ $smtp_server = "localhost"
 # $puppet_externalnodes = "no"
 
 # Include the puppet::master class to setup the Puppet Server
-include puppet::master
+include puppet

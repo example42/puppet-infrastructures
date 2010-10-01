@@ -12,8 +12,6 @@
 
 import "example42_small/site.pp"
 
-
-
 # Example42 medium site (approx. 20-400 nodes):
 # You can define ZONES (different networks, geographical sites or whatever)
 # You define NODES that inherits zones

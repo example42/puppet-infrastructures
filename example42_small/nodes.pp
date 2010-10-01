@@ -6,23 +6,21 @@
 node basenode {
         $project = "example42"
 
+	$debug = yes
+
 # Activates usage of Extended Classes
 	$monitor = "yes"
-	$monitor_collectd = "yes"
-	$monitor_munin = "yes"
-	$monitor_nagios = "yes"
-	$backup = "yes"
+	$monitor_type = ["munin","monit"]
+	$backup = "no"
 	$backup_rsyncssh = "yes"
 	$backup_rsync = "yes"
 	$firewall = "no"
 
 # Puppet Master - required
         $puppet_server = "puppet.example42.com"
-# ACLS for Puppet Server
-        $puppet_allow = [ "example42.com" , "10.42.42.0" ]
 
 # Network settings
-        $dns_servers = ["10.42.42.1","10.42.10.1"]
+        $dns_servers = ["10.42.42.1","8.8.8.8"]
         $domain = "example42.com"
         $smtp_server = "mail.example42.com"
         $local_network = "10.42.42.0/24"
@@ -54,20 +52,20 @@ node basenode {
 
 node 'puppet.example42.com' inherits basenode {
 
+# Access lists for Puppetmaster access (can be an array)
+	$puppet_allow = [ "example42.com" , "10.42.42.0" ]
+
 # Define if you want to use a node tool (with or without external nodes support)
 # Possible values are "foreman" or "dashboard". Default is no tool.
 # $puppet_nodetool = "dashboard"
+# $dashboard_db = "mysql"
 
 # Define if you want to enable external nodes support (you define nodes via the tools' web interface and not in Puppet language)
 # Note that if you enable external nodes support you MUST define a $puppet_nodetool
-$external_nodes = "no"
-
+# $puppet_externalnodes = "no"
 
 	include general
-	
-	include apache
-	include puppet::master
-
+	include puppet
 	include ssh::auth::keymaster
 }
 
@@ -161,26 +159,35 @@ node 'test.example42.com' inherits basenode {
 	include nagios
 }
 
-node 'ubuntu804.example42.com' inherits basenode {
+node 'test-ubuntu804.example42.com' inherits basenode {
 	include general
+	include testing
 }
 
-node 'ubuntu910.example42.com' inherits basenode {
+node 'test-ubuntu1004.example42.com' inherits basenode {
 	include general
+	include testing
 }
 
-node 'debian5.example42.com' inherits basenode {
+node 'test-debian5.example42.com' inherits basenode {
 	include general
 	include testing
 	include apache::disable
 }
 
-node 'redhat5.example42.com' inherits basenode {
+node 'test-rhel5.example42.com' inherits basenode {
 	include general
+	include testing
+}
+
+node 'test-rhel6.example42.com' inherits basenode {
+        include general
+	include testing
 }
 
 node 'opensolaris.example42.com' inherits basenode {
 	include general
+	include testing
 }
 
 node 'solaris10.example42.com' inherits basenode {
