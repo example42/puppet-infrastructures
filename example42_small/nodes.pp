@@ -12,8 +12,6 @@ node basenode {
 	$monitor = "yes"
 	$monitor_type = ["munin","monit"]
 	$backup = "no"
-	$backup_rsyncssh = "yes"
-	$backup_rsync = "yes"
 	$firewall = "no"
 
 # Puppet Master - required
