@@ -6,7 +6,7 @@
 node basenode {
         $project = "example42"
 
-	$debug = yes
+	$debug = "yes"
 
 # Activates usage of Extended Classes
 	$monitor = "yes"
@@ -55,8 +55,9 @@ node 'puppet.example42.com' inherits basenode {
 
 # Define if you want to use a node tool (with or without external nodes support)
 # Possible values are "foreman" or "dashboard". Default is no tool.
-# $puppet_nodetool = "dashboard"
-# $dashboard_db = "mysql"
+$puppet_nodetool = "dashboard"
+# $puppet_nodetool = "foreman"
+$dashboard_db = "mysql"
 
 # Define if you want to enable external nodes support (you define nodes via the tools' web interface and not in Puppet language)
 # Note that if you enable external nodes support you MUST define a $puppet_nodetool
@@ -163,6 +164,9 @@ node 'test-ubuntu804.example42.com' inherits basenode {
 }
 
 node 'test-ubuntu1004.example42.com' inherits basenode {
+	# Testing PuppetMaster
+	$puppet_server_local=true
+
 	include general
 	include testing
 }
