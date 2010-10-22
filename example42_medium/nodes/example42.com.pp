@@ -11,13 +11,15 @@
 
 node 'puppet.example42.com' inherits devel {
 	include general
-	
-	include foreman
-	include apache
-	include puppet::dashboard
-#	include puppet::foreman
-#	include puppet::foreman::externalnodes
 
+        $puppet_allow = [ "example42.com" , "10.42.42.0" ]
+$puppet_nodetool = "dashboard"
+# $puppet_nodetool = "foreman"
+$dashboard_db = "mysql"
+# $puppet_storeconfigs = "yes"
+# $puppet_externalnodes = "no"
+
+	include puppet
 	include ssh::auth::keymaster
 }
 
@@ -105,17 +107,33 @@ node 'test.example42.com' inherits devel {
 	include monitor::server
 }
 
-node 'debiantest.example42.com' inherits devel {
+node 'test-debian5.example42.com' inherits devel {
 	include general
 }
 
-node 'opensusetest.example42.com' inherits devel {
+node 'test-centos5.example42.com' inherits devel {
 	include general
 }
 
-node 'solaristest.example42.com' inherits devel {
+node 'test-rhel5.example42.com' inherits devel {
+	include general
+}
+
+node 'test-opensuse.example42.com' inherits devel {
+	include general
+}
+
+node 'test-solaris.example42.com' inherits devel {
 	include minimal
 #	include general
+}
+
+node 'test-ubuntu804.example42.com' inherits devel {
+	include general
+}
+
+node 'test-ubuntu1004.example42.com' inherits devel {
+	include general
 }
 
 

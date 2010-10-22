@@ -14,53 +14,44 @@ class general {
 # Sysctl management. Define "$my_ipforward = yes" for activating IP forwarding
         include sysctl
 
-# Various packages/settings you may want on a general host
-# TO DO: Complete and standardize modules
-#       include nrpe
-       include snmpd
-       include ntp
-#       include clock
-#       include cron
+# SNMP Daemon - Default settings
+#	include snmpd
 
-# Syslog Management
+# NTP Daemon - Default settings (generally syncs with Internet NTP servers)
+#	include ntp
+
+# Define you local timezone. Needs $timezone
+	include timezone
+
+# Installs crond and crontabs. Generally not necessary (they are installed by default), but can be required by other modules
+       include cron
+
+# Syslog Logging to a Central server
 # Needs:  $syslog_server
-       include syslog 
+       include syslog::central 
 
+# Forwards root's mail to $root_mail (change the default value!)
        include rootmail
+
+# Installs Func. Needs configuration 
 #       include func
+
+# Installs Aide with distro/os default settings
 #       include aide
+
+# Installs Psad with distro/os default settings
 #       include psad
+
+# Installs rsyncd (via xinetd). Customize it!
 #       include rsync
-#       include logrotate
+
+# Installs logrotate
+       include logrotate
 
 
-include ssh::auth
-
-include backup::target
-# Backup /etc (testing)
-	backup {
-                "backup_${fqdn}_etc":
-                frequency  => "daily",
-                path      => "/etc",
-		host      => $fqdn,
-        }
-
-# Backup /var/log (testing)
-	backup {
-                "backup_${fqdn}_var_log":
-                frequency => "hourly",
-                path      => "/var/log",
-		host      => $fqdn,
-        }
-
-# Monitor Host
-#include monitor::target
-
-	collectd::plugin { "network":
-		collectd_server => "10.42.42.9",
-	}
-	collectd::plugin { "general": }
-
+# Includes of a general testing baseline
+# Used for... testing. Should be uncommented, generally
+#	include testing
 
 }
 

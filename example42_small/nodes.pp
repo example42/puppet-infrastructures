@@ -4,7 +4,7 @@
 # and the host nodes that inherit it
 
 node basenode {
-        $project = "example42"
+        $my_project = "example42"
 
 	$debug = "yes"
 
@@ -59,6 +59,8 @@ $puppet_nodetool = "dashboard"
 # $puppet_nodetool = "foreman"
 $dashboard_db = "mysql"
 
+# $puppet_storeconfigs = "yes"
+
 # Define if you want to enable external nodes support (you define nodes via the tools' web interface and not in Puppet language)
 # Note that if you enable external nodes support you MUST define a $puppet_nodetool
 # $puppet_externalnodes = "no"
@@ -97,7 +99,7 @@ node 'syslog.example42.com' inherits basenode {
 }
 
 
-node 'monitor.example42.com' inherits basenode {
+node 'mon.example42.com' inherits basenode {
 	include general
 
 	include monitor::server
@@ -165,7 +167,7 @@ node 'test-ubuntu804.example42.com' inherits basenode {
 
 node 'test-ubuntu1004.example42.com' inherits basenode {
 	# Testing PuppetMaster
-	$puppet_server_local=true
+	# $puppet_server_local=true
 
 	include general
 	include testing

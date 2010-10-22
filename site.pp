@@ -10,7 +10,7 @@
 # Each node can include classes or defines
 # There are some useful BASELINE classes that apply general settings, used by every host
 
-import "example42_small/site.pp"
+#import "example42_small/site.pp"
 
 # Example42 medium site (approx. 20-400 nodes):
 # You can define ZONES (different networks, geographical sites or whatever)
@@ -19,4 +19,4 @@ import "example42_small/site.pp"
 # A ROLE includes all the classes/defines necessary for a group of servers with the same functionality
 # There are some useful BASELINE classes that apply general settings, used by every host
  
-# import "example42_medium/site.pp"
+import "example42_medium/site.pp"
