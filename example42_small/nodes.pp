@@ -59,7 +59,7 @@ $puppet_nodetool = "dashboard"
 # $puppet_nodetool = "foreman"
 $dashboard_db = "mysql"
 
-# $puppet_storeconfigs = "yes"
+$puppet_storeconfigs = "yes"
 
 # Define if you want to enable external nodes support (you define nodes via the tools' web interface and not in Puppet language)
 # Note that if you enable external nodes support you MUST define a $puppet_nodetool

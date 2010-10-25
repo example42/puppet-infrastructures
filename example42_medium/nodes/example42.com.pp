@@ -10,15 +10,19 @@
 ## MANAGEMENT INFRASTRUCTURE HOSTS
 
 node 'puppet.example42.com' inherits devel {
-	include general
-
         $puppet_allow = [ "example42.com" , "10.42.42.0" ]
-$puppet_nodetool = "dashboard"
-# $puppet_nodetool = "foreman"
-$dashboard_db = "mysql"
-# $puppet_storeconfigs = "yes"
-# $puppet_externalnodes = "no"
+        $puppet_nodetool = "dashboard"
+        # $puppet_nodetool = "foreman"
+        $dashboard_db = "mysql"
+        $puppet_storeconfigs = "yes"
+        $puppet_db = "mysql"
+        $puppet_db_server = "localhost"
+        $puppet_db_user = "puppet"
+        $puppet_db_password = "mys3cr3tp4ss0rd"
 
+        # $puppet_externalnodes = "no"
+
+	include general
 	include puppet
 	include ssh::auth::keymaster
 }
