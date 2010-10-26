@@ -1,7 +1,7 @@
 import "modules.pp"
 import "baselines/*.pp"
 import "infrastructures/*.pp"
-import "roles/*.pp"
+import "role/*.pp"
 import "nodes/*.pp"
 
 # General settings for standard types
