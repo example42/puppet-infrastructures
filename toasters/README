@@ -21,7 +21,7 @@ yum install -y git
 
 ##### REDHAT 6 #####################################
 # Install EPEL extra repository (beta)
-rpm -Uvh http://download.fedora.redhat.com/pub/epel/beta/6/i386/epel-release-6-1.noarch.rpm
+rpm -Uvh http://download.fedora.redhat.com/pub/epel/beta/6/i386/epel-release-6-5.noarch.rpm
 
 # Install Puppet and (optional) be sure that it doesn't run as a service. Install git.
 yum install -y puppet

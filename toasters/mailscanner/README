@@ -1,33 +1,7 @@
 # HOW TO USE THE MAILSCANNER TOASTER
 
-##################################################################
-### PUPPET AND GIT INSTALLATION
-### (Procedure changes on different OS) 
-##################################################################
-
-##### REDHAT 5 / CENTOS 5 #####
-# Install EPEL extra repository
-rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/i386/epel-release-5-4.noarch.rpm
-
-# Install Puppet and (optional) be sure that it doesn't run as a service. Install git.
-yum install -y puppet
-chkconfig puppet off
-yum install -y git
-
-
-##### UBUNTU / DEBIAN 5 #####
-# You NEED Puppet Version 0.25.X.  In some Ubuntu/Debain versions default Puppet version is 0.24.X
-# On Ubuntu 8.04 (hardy):
-# echo "deb http://ppa.launchpad.net/stgraber/puppet/ubuntu hardy main" >> /etc/apt/sources.list.d/puppet.list 
-# On Ubuntu 10.04 (lucid) there's already Puppet 0.25.X
-# On Debian 5 (lenny) you need to use the testing repo:
-
-# Install Puppet and (optional) be sure that it doesn't run as a service. Install git.
-apt-get update
-apt-get install puppet
-update-rc.d -f puppet remove
-apt-get install git-core
-
+# Follow instructions in toasters/README for installation of Puppet and git on
+# different operating systems.
 
 ##################################################################
 ### DOWNLOAD, CUSTOMIZE AND USE THE TOASTER
