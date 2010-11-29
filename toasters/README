@@ -10,7 +10,7 @@
 
 ##### REDHAT 5 / CENTOS 5 ##########################
 # Install EPEL extra repository
-rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/i386/epel-release-5-3.noarch.rpm
+rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/i386/epel-release-5-4.noarch.rpm
 
 # Install Puppet and (optional) be sure that it doesn't run as a service. Install git.
 yum install -y puppet
