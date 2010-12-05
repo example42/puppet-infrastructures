@@ -20,25 +20,29 @@ node 'puppet.example42.com' inherits devel {
     $puppet_db_server = "localhost"
     $puppet_db_user = "puppet"
     $puppet_db_password = "mys3cr3tp4ss0rd"
+#    $puppet_passenger = "yes"
 
     include role::puppet
 }
 
 
 node 'syslog.example42.com' inherits devel {
-    $rsyslog_host = "localhost"
-    $rsyslog_db = "Syslog"
-    $rsyslog_user = "syslog"
-    $rsyslog_password = "syslogpw"
+    $rsyslog_use_loganalyzer = "yes"
+    $rsyslog_db = "mysql"
+    $rsyslog_db_name = "Syslog"
+    $rsyslog_db_server = "localhost"
+    $rsyslog_db_user = "syslog"
+    $rsyslog_db_password = "mys3cr3tp4ssw04rd"
+    $syslog_server_local = true
 
     include role::syslog
 }
 
 
-node 'mon.example42.com' inherits devel {
+node 'nagios.example42.com' inherits devel {
     include general
 
-    include role::monitor
+    include nagios
 }
 
 

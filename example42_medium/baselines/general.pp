@@ -28,7 +28,7 @@ class general {
 
 # Syslog Logging to a Central server
 # Needs:  $syslog_server
-    include syslog::central 
+    include rsyslog
 
 # Installs Monit
     include monit
