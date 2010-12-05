@@ -19,14 +19,14 @@ node basenode {
 
 # Define what are the monitoring tools to use (can be an array)
 # NOTE: Some of the tools (such as nagios) require storeconfigs
-    $monitor_tool = [ "nagios" , "monit" ]
+    $monitor_tool = [ "nagios" , "monit" , "puppi" ]
 
 # Activate modules debugging (not too resource intensive and useful)
     $debug = "yes"
 
 # Some general variables used by modules
     $puppet_server = "puppet.example42.com"
-    $dns_servers = ["10.42.42.1","10.42.10.1"]
+    $dns_servers = ["10.42.42.1","8.8.8.8"]
     $domain = "example42.com"
     $smtp_server = "mail.example42.com"
 
@@ -42,11 +42,11 @@ node basenode {
     $update = "no"   # Auto Update packages (yes|no)
 
 # Munin central server
-    $munin_allow = "10.42.42.9"
+    $munin_server = "10.42.42.12"
 
 # Collectd Central server (here we use unicast networking)
 # Define the server IP (not the hostname)
-    $collectd_server = "10.42.42.9"
+    $collectd_server = "10.42.42.16"
 
 }
 

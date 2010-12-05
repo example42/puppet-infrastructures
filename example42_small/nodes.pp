@@ -39,7 +39,7 @@ node basenode {
 
 
 # Munin central server
-        $munin_allow = "10.42.42.9"
+        $munin_server = "10.42.42.9"
 
 # Collectd Central server (here we use unicast networking)
 # Define the server IP (not the hostname)
