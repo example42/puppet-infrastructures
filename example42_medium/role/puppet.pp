@@ -1,8 +1,3 @@
 class role::puppet {
-    $role = "puppet"
-
-    include general
-
-    include puppet
-
+#    include puppet # Already included in general. Puppetmaster is automatically detected or used on nodes where $puppet_server_local=yes
 }

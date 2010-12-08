@@ -5,7 +5,8 @@
 # Each node should inherit a zone node defined in infrastructure.pp
 # When using nodes' inheritance to (re)define variables is VERY IMPORTANT to include classes
 # only AFTER the declaration of the variables (otherwise you face variables scoping problems).
-# Here we just include a role class where everything is done.
+# Each node should have a role, defined in the omonimous variable.
+# Role's inclusion is done in the baseline classes (for example general.pp)
 
 ## MANAGEMENT INFRASTRUCTURE HOSTS
 
@@ -22,7 +23,8 @@ node 'puppet.example42.com' inherits devel {
     $puppet_db_password = "mys3cr3tp4ss0rd"
 #    $puppet_passenger = "yes"
 
-    include role::puppet
+    $role = "puppet"
+    include general
 }
 
 
@@ -35,16 +37,20 @@ node 'syslog.example42.com' inherits devel {
     $rsyslog_db_password = "mys3cr3tp4ssw04rd"
     $syslog_server_local = true
 
-    include role::syslog
+    $role = "syslog"
+    include general
 }
 
 
 node 'nagios.example42.com' inherits devel {
+    $role = "nagios"
     include general
-
-    include nagios
 }
 
+node 'console.example42.com' inherits devel {
+    $role = "console"
+    include general
+}
 
 node 'cacti.example42.com' inherits devel {
     $cacti_mysqluser = "cactiuser"
@@ -53,42 +59,51 @@ node 'cacti.example42.com' inherits devel {
     $cacti_mysqldbname = "cacti"
     $mysql_passwd = "example42"
 
-    include role::cacti
+    $role = "cacti"
+    include general
 }
 
 
 
 ## TESTING HOSTS (Used for modules testing)
 node 'test.example42.com' inherits devel {
-    include role::test
+    $role = "test"
+    include general
 }
 
 node 'test-debian5.example42.com' inherits devel {
-    include role::test
+    $role = "test"
+    include general
 }
 
 node 'test-centos5.example42.com' inherits devel {
-    include role::test
+    $role = "test"
+    include general
 }
 
 node 'test-rhel5.example42.com' inherits devel {
-    include role::test
+    $role = "test"
+    include general
 }
 
 node 'test-opensuse.example42.com' inherits devel {
-    include role::test
+    $role = "test"
+    include general
 }
 
 node 'test-solaris.example42.com' inherits devel {
-    include role::test
+    $role = "test"
+    include general
 }
 
 node 'test-ubuntu804.example42.com' inherits devel {
-    include role::test
+    $role = "test"
+    include general
 }
 
 node 'test-ubuntu1004.example42.com' inherits devel {
-    include role::test
+    $role = "test"
+    include general
 }
 
 
@@ -112,7 +127,8 @@ node 'mail.example42.com' inherits prod {
     $mailscanner_adminuser = "admin"
     $mailscanner_adminpassword = "admin"
 
-    include role::mailscanner
+    $role = "mailscanner"
+    include general
 }
 
 # Samba PDC - Ldap backend 
@@ -128,5 +144,5 @@ node 'dc.example42.com' inherits intranet {
     $samba_pdc    = "dc.example42.com"
     $mysql_passwd     = "example42"
 
-    include role::file
+    $role = "file"
 }

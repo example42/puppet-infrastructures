@@ -1,8 +1,5 @@
 class role::test {
-    $role = "test"
-
-    include general
-
+# Testing class. Used in test-* nodes
     # include cacti
+    # include mcollective
 }
-

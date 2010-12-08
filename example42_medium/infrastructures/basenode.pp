@@ -19,14 +19,15 @@ node basenode {
 
 # Define what are the monitoring tools to use (can be an array)
 # NOTE: Some of the tools (such as nagios) require storeconfigs
-    $monitor_tool = [ "nagios" , "monit" , "puppi" ]
+    $monitor_tool = [ "nagios" , "puppi" ]
 
 # Activate modules debugging (not too resource intensive and useful)
     $debug = "yes"
 
 # Some general variables used by modules
     $puppet_server = "puppet.example42.com"
-    $dns_servers = ["10.42.42.1","8.8.8.8"]
+    $puppet_allow = [ "10.42.42.0/24" , "10.42.0.0/24" ]
+    $dns_servers = [ "10.42.42.1" , "8.8.8.8" ]
     $domain = "example42.com"
     $smtp_server = "mail.example42.com"
 
@@ -35,6 +36,9 @@ node basenode {
 
 # Syslog servers. Can be an array.
     $syslog_servers = ["10.42.42.15"]
+
+# Set proxy, if needed
+    $proxy_server = "proxy.example42.com:8080"
 
     $timezone = "Europe/Rome"
     $ntp_server = "ntp.example42.com"
@@ -47,6 +51,17 @@ node basenode {
 # Collectd Central server (here we use unicast networking)
 # Define the server IP (not the hostname)
     $collectd_server = "10.42.42.16"
+
+# NRPE ACCESS
+    $nrpe_allowed_hosts = "10.42.42.11,10.42.42.36"
+    $nrpe_dont_blame_nrpe = "1"
+    $nrpe_use_ssl = "yes"
+
+# MCollective
+    $mcollective_psk = "42324bws!988!"
+    $mcollective_stomp_host = "mq1.pgol.com"
+    $mcollective_stomp_user = "mcollective"
+    $mcollective_stomp_password = "Unf0rg3tt4bl3!"
 
 }
 

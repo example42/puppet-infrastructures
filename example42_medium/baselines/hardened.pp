@@ -19,5 +19,7 @@ class hardened {
 # SELINUX management. Include selinux::disabled , selinux::permissive or selinux::enforcing
 #       include selinux::enforcing
 
-}
+# ROLE SPECIFIC CLASSES ARE INCLUDED HERE
+   if ( $role ) { include "role::$role" }
 
+}

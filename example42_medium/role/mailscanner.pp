@@ -1,8 +1,4 @@
 class role::mailscanner {
-    $role = "mailscanner"
-
-    include general
-
     # MailScanner components
     include mysql
     include sendmail::disable
