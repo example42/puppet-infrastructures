@@ -43,7 +43,14 @@ node 'syslog.example42.com' inherits devel {
 
 
 node 'nagios.example42.com' inherits devel {
+    $nagios_check_external_commands = "no"
     $role = "nagios"
+    include general
+}
+
+node 'munin.example42.com' inherits devel {
+    $munin_server_local = true
+    $role = "munin"
     include general
 }
 
