@@ -11,7 +11,7 @@
 ## MANAGEMENT INFRASTRUCTURE HOSTS
 
 node 'puppet.example42.com' inherits devel {
-    $puppet_allow = [ "example42.com" , "10.42.42.0" ]
+    $puppet_allow = [ "example42.com" , "10.42.42.0/24" ]
     $puppet_nodetool = "dashboard"
     # $puppet_nodetool = "foreman"
     # $puppet_externalnodes = "no"

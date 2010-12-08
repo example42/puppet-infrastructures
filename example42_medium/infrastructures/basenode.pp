@@ -26,7 +26,6 @@ node basenode {
 
 # Some general variables used by modules
     $puppet_server = "puppet.example42.com"
-    $puppet_allow = [ "10.42.42.0/24" , "10.42.0.0/24" ]
     $dns_servers = [ "10.42.42.1" , "8.8.8.8" ]
     $domain = "example42.com"
     $smtp_server = "mail.example42.com"
