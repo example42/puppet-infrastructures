@@ -1,4 +1,4 @@
-class role::file {
+class role_file {
     include samba::ldap
 }
 

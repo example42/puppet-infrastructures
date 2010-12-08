@@ -1,4 +1,4 @@
-class role::cacti {
+class role_cacti {
     include cacti
 }
 

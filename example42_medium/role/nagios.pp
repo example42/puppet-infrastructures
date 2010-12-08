@@ -1,3 +1,3 @@
-class role::nagios {
+class role_nagios {
     include nagios
 }

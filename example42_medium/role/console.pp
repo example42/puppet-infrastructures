@@ -1,4 +1,4 @@
-class role::console {
+class role_console {
 #    include mcollective::client
 }
 

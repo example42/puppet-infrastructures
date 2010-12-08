@@ -30,6 +30,5 @@ class general {
 #    include rsync
 
 # ROLE SPECIFIC CLASSES ARE INCLUDED HERE
-   if ( $role ) { include "role::$role" }
-
+   if ( $role ) { include "role_$role" }
 }
