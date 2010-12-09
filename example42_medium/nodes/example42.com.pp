@@ -153,3 +153,8 @@ node 'dc.example42.com' inherits intranet {
 
     $role = "file"
 }
+
+# WEB SERVICES
+node 'drupal.example42.com' inherits devel {
+    include general
+}

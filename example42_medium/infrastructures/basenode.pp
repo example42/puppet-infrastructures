@@ -55,6 +55,8 @@ node basenode {
     $nrpe_allowed_hosts = "10.42.42.11,10.42.42.36"
     $nrpe_dont_blame_nrpe = "1"
     $nrpe_use_ssl = "yes"
+# Nagios servers grouping logic
+   # $nagios_grouplogic = "zone"
 
 # MCollective
     $mcollective_psk = "42324bws!988!"
