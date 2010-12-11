@@ -3,7 +3,7 @@
 import "common"
 
 # Baselines classes include modules that have to be applied to all nodes.
-import "baselines/*.pp"
+# import "baselines/*.pp"
 
 # The layout of your Infrastructure may be defined here
 import "infrastructures/*.pp"

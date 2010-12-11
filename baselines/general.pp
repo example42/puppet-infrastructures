@@ -31,4 +31,8 @@ class general {
 
 # ROLE SPECIFIC CLASSES ARE INCLUDED HERE
    if ( $role ) { include "role_$role" }
+
+# INCLUDE TESTING CLASSES IF $testing="yes" 
+   if ( $testing == "yes" ) { include "testing" }
+
 }

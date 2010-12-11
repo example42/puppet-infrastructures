@@ -24,6 +24,10 @@ node devel inherits basenode {
         $local_network = "10.42.42.0/24"
         $default_gateway = "10.42.42.1"
         $dhcp_range = "10.42.42.100 10.42.42.199"
+
+# WE WANT TO USE THE TESTING BASELINE 
+    $testing = "yes"
+
 }
 
 node test inherits basenode {

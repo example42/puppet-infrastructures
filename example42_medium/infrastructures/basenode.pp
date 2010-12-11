@@ -6,7 +6,7 @@
 node basenode {
 
 # If you define  $my_project , custom $project.pp classes are autoloaded
-# You can place here your changes and local customizations using the same modules base with different projects
+# You can place here your changes and local customizations using the same modules base with different projects
     $my_project = "example42"
     
 # Uncomment below if you want you custom project classes to in in an autonomous module 

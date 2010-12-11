@@ -59,6 +59,21 @@ node 'console.example42.com' inherits devel {
     include general
 }
 
+
+node 'mq1.example42.com' inherits devel {
+    $role = "mq"
+    include general
+}
+node 'mq2.example42.com' inherits devel {
+    $role = "mq"
+    include general
+}
+node 'mq3.example42.com' inherits devel {
+    $role = "mq"
+    include general
+}
+
+
 node 'cacti.example42.com' inherits devel {
     $cacti_mysqluser = "cactiuser"
     $cacti_mysqlpassword = "example42"
