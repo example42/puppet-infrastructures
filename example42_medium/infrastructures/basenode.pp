@@ -60,7 +60,7 @@ node basenode {
 
 # MCollective
     $mcollective_psk = "42324bws!988!"
-    $mcollective_stomp_host = "mq1.pgol.com"
+    $mcollective_stomp_host = "mq1.example42.com"
     $mcollective_stomp_user = "mcollective"
     $mcollective_stomp_password = "Unf0rg3tt4bl3!"
 
