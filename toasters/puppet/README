@@ -6,8 +6,8 @@
 git clone git://www.example42.com/example42modules /etc/puppet/modules
 git clone git://www.example42.com/example42infrastructures /etc/puppet/manifests
 
-# Edit eventually the variables and the classes to include in puppet/init.pp
-# vi /etc/puppet/manifests/toasters/puppet/init.pp
+# Edit  nd customize the settings in puppet/init.pp
+vi /etc/puppet/manifests/toasters/puppet/init.pp
 
 # Run Puppet on puppet/init.pp
 puppet -v /etc/puppet/manifests/toasters/puppet/init.pp
