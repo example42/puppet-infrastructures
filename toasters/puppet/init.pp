@@ -14,7 +14,7 @@ $puppet_server = "$fqdn"
 # $puppet_server="puppet.example42.com"
 
 # Puppet server classes are autoloaded if puppet_server is $fqdn or
-$puppet_server_local == true
+$puppet_server_local = true
 
 # Email address for root's mail forwading
 $root_email = "root"
