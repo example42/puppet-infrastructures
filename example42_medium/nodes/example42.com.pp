@@ -56,6 +56,7 @@ node 'munin.example42.com' inherits devel {
 
 node 'console.example42.com' inherits devel {
     $role = "console"
+    $mcollective_client = "yes"
     include general
 }
 
