@@ -21,6 +21,13 @@ node basenode {
 # NOTE: Some of the tools (such as nagios) require storeconfigs
     $monitor_tool = [ "nagios" , "puppi" ]
 
+# Activate Automatic firewalling
+    $firewall = "yes"
+    $firewall_tool = "iptables"
+    $firewall_destination = "0/0" # Default is $ip_address
+# Iptables management
+    $iptables_block_policy = "accept"
+
 # Activate modules debugging (not too resource intensive and useful)
     $debug = "yes"
 
@@ -40,7 +47,7 @@ node basenode {
     $proxy_server = "proxy.example42.com:8080"
 
     $timezone = "Europe/Rome"
-    $ntp_server = "ntp.example42.com"
+#     $ntp_server = "ntp.example42.com"
 
     $update = "no"   # Auto Update packages (yes|no)
 
@@ -67,7 +74,7 @@ node basenode {
     $mcollective_stomp_password = "Unf0rg3tt4bl3!"
 
 # Ldap Authentication
-#    $users_auth = "ldap" # By default we want ldap auth
+    $users_auth = "ldap" # By default we want ldap auth
     $users_ldap_servers = ["ldap1.example42.com","ldap2.example42.com"]
     $users_ldap_basedn = "dc=example42,dc=com"
 #    $users_ldap_ssl = "yes"
