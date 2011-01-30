@@ -66,5 +66,12 @@ node basenode {
     $mcollective_stomp_user = "mcollective"
     $mcollective_stomp_password = "Unf0rg3tt4bl3!"
 
+# Ldap Authentication
+#    $users_auth = "ldap" # By default we want ldap auth
+    $users_ldap_servers = ["ldap1.example42.com","ldap2.example42.com"]
+    $users_ldap_basedn = "dc=example42,dc=com"
+#    $users_ldap_ssl = "yes"
+#    $users_automount = "yes"
+
 }
 

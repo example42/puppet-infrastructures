@@ -28,5 +28,6 @@ import "baselines/*.pp"
  
 import "example42_medium/site.pp"
 
-
+# Only for clean testing
+# import test/site.pp
 

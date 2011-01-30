@@ -1,7 +1,7 @@
 class testing {
 
-    include repo::puppetlabs
-    include mcollective
+#    include repo::puppetlabs
+#    include mcollective
 #   include ssh::auth
 
 }

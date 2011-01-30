@@ -87,6 +87,17 @@ node 'cacti.example42.com' inherits devel {
 }
 
 
+node 'ldap1.example42.com' inherits devel {
+    $role = "ldap"
+    $openldap_multimaster_masters = "ldap2.example42.com" # Here the names of the other ldap masters
+    include general
+}
+node 'ldap2.example42.com' inherits devel {
+    $role = "ldap"
+    $openldap_multimaster_masters = "ldap1.example42.com" # Here the names of the other ldap masters
+    include general
+}
+
 
 ## TESTING HOSTS (Used for modules testing)
 node 'test.example42.com' inherits devel {
@@ -105,6 +116,17 @@ node 'test-centos5.example42.com' inherits devel {
 }
 
 node 'test-rhel5.example42.com' inherits devel {
+    $role = "test"
+    include general
+}
+
+node 'test-rhel6.example42.com' inherits devel {
+    $role = "test"
+    include general
+}
+
+# Scientific Linux 6 - $operatingsystem=redhat
+node 'test-sl6.example42.com' inherits devel {
     $role = "test"
     include general
 }
@@ -132,7 +154,7 @@ node 'test-ubuntu1004.example42.com' inherits devel {
 
 
 
-## PRODUCTION -  Internet Services
+## Internet Services
 
 # Postfix+Mailscanner+Mailwatch Mail Server
 node 'mail.example42.com' inherits prod {
@@ -168,9 +190,11 @@ node 'dc.example42.com' inherits intranet {
     $mysql_passwd     = "example42"
 
     $role = "file"
+    include general
 }
 
 # WEB SERVICES
 node 'drupal.example42.com' inherits devel {
+    $role = "drupal"
     include general
 }

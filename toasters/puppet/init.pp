@@ -42,5 +42,8 @@ $puppet_db_server = "localhost"
 $puppet_db_user = "puppet"
 $puppet_db_password = "mys3cr3tp4ss0rd"
 
+# Define if you want to run PuppetMaster under Passenger (Apache's mod ruby)
+# $puppet_passenger = "yes"
+
 # And after all these variable settings we just
 include puppet

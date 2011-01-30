@@ -12,7 +12,7 @@ class general {
     include cron
     include timezone
 #    include ntp
-    include iptables::disable
+#    include iptables::disable
     include sysctl
     include rootmail
 

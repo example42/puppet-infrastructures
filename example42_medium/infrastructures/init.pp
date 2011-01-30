@@ -21,9 +21,7 @@ import "basenode.pp"
 node devel inherits basenode {
         $zone = "devel"
         $dns_servers = ["10.42.42.1","8.8.8.8"]
-        $local_network = "10.42.42.0/24"
         $default_gateway = "10.42.42.1"
-        $dhcp_range = "10.42.42.100 10.42.42.199"
 
 # WE WANT TO USE THE TESTING BASELINE 
     $testing = "yes"
@@ -33,7 +31,6 @@ node devel inherits basenode {
 node test inherits basenode {
 	$network = "10.42.0.0"
 	$netmask = "255.255.255.0"
-        $local_network = "10.42.0.0/24"
         $default_gateway = "10.42.0.1"
         $zone = "test"
 }
@@ -41,7 +38,6 @@ node test inherits basenode {
 node prod inherits basenode {
 	$network = "10.42.10.0"
 	$netmask = "255.255.255.0"
-        $local_network = "10.42.10.0/24"
         $default_gateway = "10.42.10.1"
         $zone = "prod"
 }
@@ -51,7 +47,6 @@ node prod inherits basenode {
 node management inherits basenode {
 	$network = "10.42.100.0"
 	$netmask = "255.255.255.0"
-        $local_network = "10.42.100.0/24"
         $default_gateway = "10.42.100.1"
         $zone = "management"
 }
@@ -59,7 +54,6 @@ node management inherits basenode {
 node frontend inherits basenode {
 	$network = "10.42.101.0"
 	$netmask = "255.255.255.0"
-        $local_network = "10.42.101.0/24"
         $default_gateway = "10.42.101.1"
 	$update = "yes" # Overrides previosly defined settings
         $zone = "frontend"
@@ -68,7 +62,6 @@ node frontend inherits basenode {
 node backend inherits basenode {
 	$network = "10.42.102.0"
 	$netmask = "255.255.255.0"
-        $local_network = "10.42.102.0/24"
         $default_gateway = "10.42.102.1"
         $zone = "backend"
 }
