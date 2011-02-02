@@ -3,31 +3,42 @@
 
 # From here everything starts
 
-# In all the different alternative example layouts imported below we use the same baselines
-# These are classes that group common modules to set a general base layouts for your nodes.
-import "baselines/*.pp"
+# Example42 common module has to be explicitely imported
+# (contains defines used by other modules that won't autoload)
+import "common"
 
 
-# We provide different examples of Puppet infrastructures, you can choose and adapt 
-# the most suitable to your needs.
+# The definition of nodes, what classes they include and what variables are set for them
+# is done, obvisouly, accordin to custom need.
+# Here are provided some example42 setups
 
 # 1 - Example42 small site (approx. 1-20 nodes):
 # You define NODES, that inherit a basenode 
 # Each node can include classes or defines
-# There are some useful BASELINE classes that apply general settings, used by every host
-
-#import "example42_small/site.pp"
+# import "example42/small/site.pp"
 
 
 # 2 - Example42 medium site (approx. 20-400 nodes):
 # You can define ZONES (different networks, geographical sites or whatever)
 # You define NODES that inherits zones
-# Each node can include classes/defines OR a role class 
+# Each node should include a ROLE
 # A ROLE includes all the classes/defines necessary for a group of servers with the same functionality
-# There are some useful BASELINE classes that apply general settings, used by every host
- 
-import "example42_medium/site.pp"
+import "example42/medium/site.pp"
 
-# Only for clean testing
-# import test/site.pp
+# 3 - Only for testing (you may comment the above imports for cleaner testing)
+# import example42/test/site.pp
 
+# Baselines classes include modules that can be to be applied to all nodes.
+import "baselines/*.pp"
+
+# On a medium/big sized infrastructure it makes sense to use roles
+# These are classes that include other classes and resources for a specific purpose
+# You may include them in your nodes
+# In the example42 nodes samples thaa use the general baseline the relevant role
+# is automatically included on how you define the $role variable
+import "roles/*.pp"
+
+
+
+# General settings for standard types
+Exec { path => "/bin:/sbin:/usr/bin:/usr/sbin" }

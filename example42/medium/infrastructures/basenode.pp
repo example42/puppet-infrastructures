@@ -22,10 +22,10 @@ node basenode {
     $monitor_tool = [ "nagios" , "puppi" ]
 
 # Activate Automatic firewalling
-    $firewall = "yes"
+#    $firewall = "yes"
     $firewall_tool = "iptables"
     $firewall_destination = "0/0" # Default is $ip_address
-# Iptables management
+# Iptables management
     $iptables_block_policy = "accept"
 
 # Activate modules debugging (not too resource intensive and useful)

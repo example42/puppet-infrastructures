@@ -18,9 +18,10 @@ that the PuppetMaster checks is  /etc/puppet/manifests/site.pp
 from here you can import all the additions files you want.
 
 There are different sample layouts:
-example42_small - Used for small setups. It's included by default in site.pp
-example42_medium - A sample layout for medium sized setups (up to few hundreds of nodes)
+example42/small - Used for small setups. It's included by default in site.pp
+example42/medium - A sample layout for medium sized setups (up to few hundreds of nodes)
 toasters - Examples of "single-shot" setups that can be used to quickly fire-up an appliance.
 
-NOTE: This is a work in progress, use it only as a reference.
+NOTE: This is a work in progress, use it only as a reference for real world and test usage
+of Example42 modules.
 
