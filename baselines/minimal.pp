@@ -47,7 +47,11 @@ class minimal {
 # As ALTERNATIVE you can use the imported yum class (Copyright (C) 2007 admin@immerda.ch)
 # It uses the yumrepo type (somehow more enginereed but more flexible)
 # Default settings include various public repos (some are not enabled by default)
-#	 include yum
+    case $operatingsystem {
+        redhat: { include yum }
+        centos: { include yum }
+        default: { }
+    }
 
 }
 
