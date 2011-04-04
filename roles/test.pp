@@ -10,7 +10,8 @@ class role_test {
 # $drupal_use_package = "false"
 #   include drupal
    include tomcat
-  #  include openldap
+    include openldap::disable
+    include openvpn
 
     include apache::params
     include tomcat::params

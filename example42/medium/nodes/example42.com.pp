@@ -148,7 +148,7 @@ node 'test-ubuntu804.example42.com' inherits devel {
 
 node 'test-ubuntu1004.example42.com' inherits devel {
     $role = "test"
-    include general
+#    include minimal
 }
 
 
@@ -198,3 +198,24 @@ node 'drupal.example42.com' inherits devel {
     $role = "drupal"
     include general
 }
+
+# GATEWAY
+node 'gw.example42.com' inherits devel {
+    $role = "vpn"
+    include general
+
+    openvpn::tunnel { "test":
+        mode       => "p2p",
+        remote     => "remote.example42.com",
+        port       => "9899",
+        auth_type  => "key",
+        proto      => "tcp",
+        dev        => "tun",
+        ifconfig   => "10.9.1.1 10.9.1.2",
+        route      => "10.42.42.0/24",
+        templatefile => "openvpn/default.conf.erb" ,
+        enable     => true, 
+    }
+
+}
+

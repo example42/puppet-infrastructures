@@ -9,7 +9,7 @@ import "common"
 
 
 # The definition of nodes, what classes they include and what variables are set for them
-# is done, obvisouly, accordin to custom need.
+# is done, obvisouly, according to custom need.
 # Here are provided some example42 setups
 
 # 1 - Example42 small site (approx. 1-20 nodes):
@@ -34,7 +34,7 @@ import "baselines/*.pp"
 # On a medium/big sized infrastructure it makes sense to use roles
 # These are classes that include other classes and resources for a specific purpose
 # You may include them in your nodes
-# In the example42 nodes samples thaa use the general baseline the relevant role
+# In the example42 nodes samples that use the "general" baseline the relevant role
 # is automatically included on how you define the $role variable
 import "roles/*.pp"
 
