@@ -10,12 +10,21 @@ class general {
     include rsyslog
     include logrotate
     include cron
-    include timezone
-#    include ntp
-#    include iptables::disable
-    include iptables # And firewall for All!
     include sysctl
+
+    include openssh
+
+# Time
+    include timezone
+    include ntp
+
+# Iptables 
+#    include iptables::disable
+    include iptables # And (automatic) firewall for All!
+
+# Mail
     include rootmail
+    include postfix
 
 # MONITORING
 #    include snmpd
@@ -24,11 +33,14 @@ class general {
     include nrpe
 
 # EXTRA STUFF
+    include mcollective
 #    include func
-
 #    include aide
 #    include psad
 #    include rsync
+
+# Some Example42 modules use LSB based facts
+    if ( $kernel == "Linux" ) { include "lsb" }
 
 # ROLE SPECIFIC CLASSES ARE INCLUDED HERE
    if ( $role ) { include "role_$role" }
