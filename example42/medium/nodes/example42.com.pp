@@ -147,8 +147,8 @@ node 'test-ubuntu804.example42.com' inherits devel {
 }
 
 node 'test-ubuntu1004.example42.com' inherits devel {
-    $role = "test"
-#    include minimal
+    $role = "console"
+    include general
 }
 
 
@@ -204,18 +204,40 @@ node 'gw.example42.com' inherits devel {
     $role = "vpn"
     include general
 
-    openvpn::tunnel { "test":
-        mode       => "p2p",
-        remote     => "remote.example42.com",
-        port       => "9899",
+    openvpn::tunnel { "test-server-key":
+        mode       => "server",
+#        remote     => "remote.example42.com",
+#        port       => "9899",
         auth_type  => "key",
+        auth_key   => "V3rYS3cr3TbutCl34n!",
         proto      => "tcp",
         dev        => "tun",
-        ifconfig   => "10.9.1.1 10.9.1.2",
+        ifconfig   => "10.9.1.0 255.255.255.0",
         route      => "10.42.42.0/24",
         templatefile => "openvpn/default.conf.erb" ,
         enable     => true, 
     }
+
+    openvpn::tunnel { "test-client-ca":
+        mode       => "client",
+        remote     => "remote.example42.com",
+        auth_type  => "ca",
+        dev        => "tap",
+        ifconfig   => "10.9.2.2",
+        enable     => true,
+    }
+
+    openvpn::tunnel { "test-server-ca":
+        mode       => "server",
+        remote     => "42001",
+        auth_type  => "ca",
+        dev        => "tun",
+        ifconfig   => "10.9.10.0 255.255.255.0",
+        route      => "10.42.42.0/24",
+        enable     => true,
+    }
+
+
 
 }
 

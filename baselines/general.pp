@@ -14,6 +14,7 @@ class general {
     include timezone
 #    include ntp
 #    include iptables::disable
+#
     include iptables # And firewall for All!
     include sysctl
     include rootmail
