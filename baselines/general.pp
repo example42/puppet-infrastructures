@@ -8,6 +8,7 @@ class general {
 # Check module/README for module's variables 
     include users
     include rsyslog
+    include openssh
     include logrotate
     include cron
     include sysctl
