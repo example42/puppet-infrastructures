@@ -23,10 +23,14 @@ import "common"
 # You define NODES that inherits zones
 # Each node should include a ROLE
 # A ROLE includes all the classes/defines necessary for a group of servers with the same functionality
-import "example42/medium/site.pp"
+# import "example42/medium/site.pp"
 
 # 3 - Only for testing (you may comment the above imports for cleaner testing)
 # import example42/test/site.pp
+
+# 4 - Lab42 Stuff
+import "/etc/puppet/manifests/lab42/site.pp"
+
 
 # Baselines classes include modules that can be to be applied to all nodes.
 import "baselines/*.pp"
