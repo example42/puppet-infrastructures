@@ -2,9 +2,9 @@
 
 # Follow instructions in toasters/README for installation of Puppet and git on your system.
 
-# Then download via git Example42 puppet modules
-git clone git://www.example42.com/example42modules /etc/puppet/modules
-git clone git://www.example42.com/example42infrastructures /etc/puppet/manifests
+# Download via git Example42 puppet modules and sample infrastructures
+git clone git://github.com/example42/puppet-modules.git /etc/puppet/modules
+git clone git://github.com/example42/puppet-infrastructures.git /etc/puppet/manifests
 
 # Edit  nd customize the settings in puppet/init.pp
 vi /etc/puppet/manifests/toasters/puppet/init.pp
