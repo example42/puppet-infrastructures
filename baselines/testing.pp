@@ -1,7 +1,10 @@
+#
+# Class: testing
+#
+# Just for testing modules
+#
 class testing {
 
-#    include repo::puppetlabs
-    include mcollective
 #   include ssh::auth
 
 }

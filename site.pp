@@ -1,48 +1,32 @@
-# /etc/manifest/site.pp is the first file that, by default, the PuppetMaster loads
-# if no external tool is used to manage nodes.
+# 
+# /etc/manifest/site.pp is the first file that, by default, the PuppetMaster
+# loads if you don't use an ENC.
+#
+# Here you find a sample layout of a Puppet infrastructure based on the Example42 modules
+# We import explicitely various manifests classes placed in /etc/manifests/
+# and modules that can't be autoloaded from your modulepath ( /etc/puppet/modules )
 
-# From here everything starts
-
-# Example42 common module has to be explicitely imported
-# (contains defines used by other modules that won't autoload)
+# Example42 common module (contains defines used by other modules that can't autoload)
 import "common"
 
+# If you want to place your modules customizations in a dedicated module, import it here
+# and set the $my_project variable to the same name to autoload them in Example42 modules
+# Note that once you do that you need a $my_project subclass (even empty) for most of the 
+# classes present in the Example42 modules, because of the autoloading feature.
+# import "lab42" # (And set $my_project="lab42")
 
-# The definition of nodes, what classes they include and what variables are set for them
-# is done, obvisouly, according to custom need.
-# Here are provided some example42 setups
-
-# 1 - Example42 small site (approx. 1-20 nodes):
-# You define NODES, that inherit a basenode 
-# Each node can include classes or defines
-# import "example42/small/site.pp"
-
-
-# 2 - Example42 medium site (approx. 20-400 nodes):
-# You can define ZONES (different networks, geographical sites or whatever)
-# You define NODES that inherits zones
-# Each node should include a ROLE
-# A ROLE includes all the classes/defines necessary for a group of servers with the same functionality
-# import "example42/medium/site.pp"
-
-# 3 - Only for testing (you may comment the above imports for cleaner testing)
-# import example42/test/site.pp
-
-# 4 - Lab42 Stuff
-import "/etc/puppet/manifests/lab42/site.pp"
-
+# Baseline and infrastructure layout. Customize!
+import "infrastructure.pp"
 
 # Baselines classes include modules that can be to be applied to all nodes.
 import "baselines/*.pp"
 
-# On a medium/big sized infrastructure it makes sense to use roles
-# These are classes that include other classes and resources for a specific purpose
-# You may include them in your nodes
-# In the example42 nodes samples that use the "general" baseline the relevant role
-# is automatically included on how you define the $role variable
+# Role classes, include modules and configurations specific to a role
 import "roles/*.pp"
 
-
+# Nodes. Here you define your actual "real" nodes (hostnames). They can inherit the "zone" nodes defined in 
+# infrastructure.pp and have obviously to be customized. You can split the nodes definitions in different files.
+import "nodes/*.pp"
 
 # General settings for standard types
 Exec { path => "/bin:/sbin:/usr/bin:/usr/sbin" }
