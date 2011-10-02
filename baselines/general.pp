@@ -70,8 +70,8 @@ class general {
 # Install rsync daemon
 #    include rsync
 
-# Install lsb. Required by some Example42 modules
-    if ( $kernel == "Linux" ) { include "lsb" }
+# Install lsb. 
+#    if ( $kernel == "Linux" ) { include "lsb" }
 
 # If $role is set at node level, the relevant is automatically loaded
     if ( $role ) { include "role_$role" }

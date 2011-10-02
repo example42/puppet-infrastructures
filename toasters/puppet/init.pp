@@ -10,8 +10,8 @@ import "common"
 # Refer to the modules' documentation for available options
 
 # The name of the puppet master
-$puppet_server = "$fqdn" 
-# $puppet_server="puppet.example42.com"
+# $puppet_server = "$fqdn" 
+$puppet_server="puppet.example42.com"
 
 # Puppet server classes are autoloaded if puppet_server is $fqdn or
 $puppet_server_local = true
@@ -45,5 +45,16 @@ $puppet_db_password = "mys3cr3tp4ss0rd"
 # Define if you want to run PuppetMaster under Passenger (Apache's mod ruby)
 # $puppet_passenger = "yes"
 
-# And after all these variable settings we just
+# We require proper packages
+case $operatingsystem {
+    redhat: { include yum }
+    centos: { include yum }
+    ubuntu: { include apt
+              include apt::repo::puppetlabs }
+    debian: { include apt
+              include apt::repo::puppetlabs }
+    default: { }
+}
+
+# And finally we just
 include puppet

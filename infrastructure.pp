@@ -91,6 +91,7 @@ node basenode {
 # Yum repos (for Rhel)
     $yum_extrarepo = [ "epel" , "tmz" , "puppetlabs" ] 
     $yum_update = "updatesd"
+    $yum_clean_repos = true
 
 # Use puppi and activate puppi subclasses in modules
     $puppi = "yes"

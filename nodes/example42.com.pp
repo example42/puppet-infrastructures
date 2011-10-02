@@ -110,7 +110,27 @@ node 'test-debian5.example42.com' inherits devel {
     include general
 }
 
+node 'test-debian6.example42.com' inherits devel {
+    $role = "test"
+    include general
+}
+
+node 'test-centos4.example42.com' inherits devel {
+    $role = "test"
+    include general
+}
+
 node 'test-centos5.example42.com' inherits devel {
+    $role = "test"
+    include general
+}
+
+node 'test-centos6.example42.com' inherits devel {
+    $role = "test"
+    include general
+}
+
+node 'test-rhel4.example42.com' inherits devel {
     $role = "test"
     include general
 }
@@ -125,7 +145,7 @@ node 'test-rhel6.example42.com' inherits devel {
     include general
 }
 
-# Scientific Linux 6 - $operatingsystem=redhat
+# Scientific Linux 6 
 node 'test-sl6.example42.com' inherits devel {
     $role = "test"
     include general
