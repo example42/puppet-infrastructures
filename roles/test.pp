@@ -9,12 +9,11 @@ class role_test {
 #    include samba
 # $drupal_use_package = "false"
 #   include drupal
-   include tomcat
-    include openldap::disable
-    include openvpn
+#   include tomcat
+    include openldap
+    # include openvpn
 
-    include apache::params
-    include tomcat::params
+    include apache
 
     puppi::project::dir { "openskills":
         source           => "rsync://deploy.${domain}/deploy/openskills",

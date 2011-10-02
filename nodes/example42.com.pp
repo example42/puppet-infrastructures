@@ -167,7 +167,7 @@ node 'test-ubuntu804.example42.com' inherits devel {
 }
 
 node 'test-ubuntu1004.example42.com' inherits devel {
-    $role = "console"
+    $role = "test"
     include general
 }
 

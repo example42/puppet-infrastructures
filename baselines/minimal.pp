@@ -22,6 +22,7 @@ class minimal {
     case $operatingsystem {
         redhat: { include yum }
         centos: { include yum }
+        scientific: { include yum }
         ubuntu: { include apt 
                   include apt::repo::puppetlabs }
         debian: { include apt 
