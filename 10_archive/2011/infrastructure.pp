@@ -1,4 +1,4 @@
-# Here fin some example Puppet infrastructures templates.
+# Here find some example Puppet infrastructures templates.
 
 # There can be many approaches:
 # - Nodes are defined in an inheritance tree (basenode -> zones -> node),

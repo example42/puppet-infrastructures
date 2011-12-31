@@ -3,7 +3,7 @@
 
 # General setups
 Exec { path => "/bin:/sbin:/usr/bin:/usr/sbin" }
-import "common"
+# import "common"
 
 # USER VARIABLES
 # Define here some variables needed by the used modules
@@ -11,7 +11,7 @@ import "common"
 
 # The name of the puppet master
 # $puppet_server = "$fqdn" 
-$puppet_server="puppet.example42.com"
+$puppet_server="foreman.lab42.it"
 
 # Puppet server classes are autoloaded if puppet_server is $fqdn or
 $puppet_server_local = true
@@ -22,12 +22,12 @@ $root_email = "root"
 $smtp_server = "localhost"
 
 # Access lists for Puppetmaster access (can be an array)
-$puppet_allow = [ "*.example42.com" , "10.42.42.0" ]
+$puppet_allow = [ "*.example42.com" , "10.42.20.0" ]
 
 # Define if you want to use a node tool (with or without external nodes support)
 # Possible values are "foreman" or "dashboard". Default is no tool.
-$puppet_nodetool = "dashboard"
-# $puppet_nodetool = "foreman"
+# $puppet_nodetool = "dashboard"
+$puppet_nodetool = "foreman"
 
 # $dashboard_db = "mysql"
 
@@ -43,7 +43,7 @@ $puppet_db_user = "puppet"
 $puppet_db_password = "mys3cr3tp4ss0rd"
 
 # Define if you want to run PuppetMaster under Passenger (Apache's mod ruby)
-# $puppet_passenger = "yes"
+$puppet_passenger = "yes"
 
 # We require proper packages
 case $operatingsystem {
