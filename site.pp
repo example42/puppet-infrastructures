@@ -107,7 +107,7 @@ node 'puppet.example42.com' inherits basenode {
   include example42::role::puppet
 }
 
-node /^foreman\,*/ inherits basenode {
+node /^foreman\.*/ inherits basenode {
   include example42::role::foreman
 }
 
