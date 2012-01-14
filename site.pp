@@ -46,7 +46,7 @@ $iptables_config = "file"
 # Some general variables used by modules
   $puppet_server = "foreman.lab42.it"
   $dns_servers = [ "10.42.20.1" , "8.8.8.8" ]
-  $smtp_server = "mail.lab42.it"
+  $smtp_server = [ "mail.example42.com" ]
 
 # Local root mail is forwarded to $root_email - CHANGE IT!
   $root_email = "roots@example42.com"
@@ -121,4 +121,9 @@ node /^test\.*/ inherits basenode {
 
 node /^rspec\.*/ inherits basenode {
   include example42::role::rspec
+}
+
+
+node /^moon\.*/ inherits basenode {
+  include example42::role::ci
 }
