@@ -1,9 +1,8 @@
-== EXAMPLE 42 PUPPET SETUP
+== EXAMPLE 42 PUPPET MODULES
 
-This is a sample of the content of /etc/puppet/manifests  dir, where are defined nodes that use Example42 Puppet modules.
+Example42 is a set of Puppet Modules that provides an integrated and coherent Puppet setup to manage many common applications.
 
-You can find other sample setups in the 2011 branch, where layouts based on nodes' inheritance are present.
-Even if we liked that approach, we won't present it anymore as it's going to be unusable on Puppet 2.8 where variables dynamic scoping is going to be discontinued (sigh).
+Each module contains at least one class having its same name, which can be used by nodes.
 
 === GENERAL NOTE ON PUPPET NODES
 
@@ -13,7 +12,7 @@ You have 2 ways to define nodes in Puppet:
 
 * Via an External Node Classifier (ENC), such as Dashboard, Puppet Enterprise Console or Foreman or whatever custom source, where you may have a GUI that helps in setting nodes and their variables.
 
-The general logic is that for each node you have to set variables (eventually using different methods) and include/use classes (that generally are placed in omonimous modules).
+The general logic is that for each node you have to set variables (eventually using different methods) that affect the behavior of the class that are included.
 
 If you choose the first approach, based on site.pp, (which is the default when you install Puppet) you can fine here some sample infrastructure layouts.
 Look in 10_archive/2010 and 10_archive/2011 of the 2011 branch for alternative approaches.
@@ -27,6 +26,23 @@ Most of the logic on what is placed in every node is moved in a "project" module
 
 This is easily reproducible by an ENC (just redefine the nodes used here and the relevant variables).
 
-NOTE: This is a work in progress, use it only as a reference for usage of Example42 modules.
+=== INSTALLATION
+You can retrieve the Example42 modules Version 1.0 (Stable) with:
+
+        git clone --recursive -b 1.0 git://github.com/example42/puppet-modules.git
+
+You can get the current module set, which is in a transition phase with both 1.0 and NextGen modules with:
+
+        git clone --recursive git://github.com/example42/puppet-modules.git
+
+=== UPDATE
+When you want to update the modules with the upstream version (don't do this directory in a production environment!) remember that also the submodules have to be updated:
+
+        cd /etc/puppet/modules # Or the dir where you have your local git repo
+        git pull origin master
+        git submodule init
+        git submodule update
+        git submodule foreach git pull origin master
+
 
 
