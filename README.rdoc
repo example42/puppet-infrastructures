@@ -1,11 +1,11 @@
-= EXAMPLE 42 PUPPET SETUP
+== EXAMPLE 42 PUPPET SETUP
 
 This is a sample of the content of /etc/puppet/manifests  dir, where are defined nodes that use Example42 Puppet modules.
 
 You can find other sample setups in the 2011 branch, where layouts based on nodes' inheritance are present.
 Even if we liked that approach, we won't present it anymore as it's going to be unusable on Puppet 2.8 where variables dynamic scoping is going to be discontinued (sigh).
 
-== GENERAL NOTE ON PUPPET NODES
+=== GENERAL NOTE ON PUPPET NODES
 
 You have 2 ways to define nodes in Puppet:
 
@@ -20,7 +20,7 @@ Look in 10_archive/2010 and 10_archive/2011 of the 2011 branch for alternative a
 
 In the toasters/ directory you find examples of master-less setups that can be used to quickly configure an appliance.
 
-== THE EXAMPLE42 PROJECT MODULE
+=== THE EXAMPLE42 PROJECT MODULE
 The approach used here is minimal since in site.pp are defined only some general variables and nodes.
 
 Most of the logic on what is placed in every node is moved in a "project" module, here called example42 where are defined custom classes, "role" classes (where classes are included for different purposes) and the custom templates and files used for the "example42" project.
