@@ -128,7 +128,6 @@ node /^moon\.*/ inherits basenode {
   include example42::role::ci
 }
 
-# What's below is needed to render the README with PuppetDoc
 # :include:README.rdoc
 # :main:__site__::readme
 class readme {}

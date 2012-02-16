@@ -1,33 +1,25 @@
-== EXAMPLE 42 PUPPET MODULES
+= EXAMPLE 42 PUPPET MODULES
 
 Example42 is a set of Puppet Modules that provides an integrated and coherent Puppet setup to manage many common applications.
 
 Each module contains at least one class having its same name, which can be used by nodes.
 
-=== GENERAL NOTE ON PUPPET NODES
+Official site is http://www.example42.com
 
-You have 2 ways to define nodes in Puppet:
+Continuous integration tests are public: http://www.example42.com/jenkins
 
-* Via Puppet manifests, using the "node" definitions and the resources declared on included starting  from the file /etc/manifests/site.pp
+Git repositories are on GitHub: http://github.com/example42
 
-* Via an External Node Classifier (ENC), such as Dashboard, Puppet Enterprise Console or Foreman or whatever custom source, where you may have a GUI that helps in setting nodes and their variables.
+Currently (02/2012) the module set is composed of 2 generation of modules:
 
-The general logic is that for each node you have to set variables (eventually using different methods) that affect the behavior of the class that are included.
+* "Old", 1.0 modules, that generally are supposed to work for Puppet 0.24 and later and will not be compatible with Puppet Etch/2.8 
 
-If you choose the first approach, based on site.pp, (which is the default when you install Puppet) you can fine here some sample infrastructure layouts.
-Look in 10_archive/2010 and 10_archive/2011 of the 2011 branch for alternative approaches.
+* "NextGen", 2.0 modules, that are compatible only with Puppet versions 2.6 and later (Etch included) and feature better reusability and testing
 
-In the toasters/ directory you find examples of master-less setups that can be used to quickly configure an appliance.
+The intention is to move the whole module set to NextGen modules by the end of 2012.
 
-=== THE EXAMPLE42 PROJECT MODULE
-The approach used here is minimal since in site.pp are defined only some general variables and nodes.
-
-Most of the logic on what is placed in every node is moved in a "project" module, here called example42 where are defined custom classes, "role" classes (where classes are included for different purposes) and the custom templates and files used for the "example42" project.
-
-This is easily reproducible by an ENC (just redefine the nodes used here and the relevant variables).
-
-=== INSTALLATION
-You can retrieve the Example42 modules Version 1.0 (Stable) with:
+== Installation
+You can retrieve the Example42 modules Version 1.0 with:
 
         git clone --recursive -b 1.0 git://github.com/example42/puppet-modules.git
 
@@ -35,14 +27,43 @@ You can get the current module set, which is in a transition phase with both 1.0
 
         git clone --recursive git://github.com/example42/puppet-modules.git
 
-=== UPDATE
-When you want to update the modules with the upstream version (don't do this directory in a production environment!) remember that also the submodules have to be updated:
+== Update
+When you want to update the modules with the upstream version (don't do this directly in a production environment!) remember that also the submodules have to be updated:
 
         cd /etc/puppet/modules # Or the dir where you have your local git repo
         git pull origin master
         git submodule init
         git submodule update
+
+If you want to get the very latest version of each submodule, even the ones not tracked on the main repo:
+
         git submodule foreach git pull origin master
 
+From time to time you may need to resync the submodules URLs:
 
+        git submodule sync
+
+
+== General note on Puppet nodes
+
+You have at least two ways to define nodes in Puppet:
+
+* Via Puppet manifests, using the "node" definitions and the resources declared in /etc/manifests/site.pp or in files imported from there.
+
+* Via an External Node Classifier (ENC), such as Dashboard, Puppet Enterprise Console or Foreman or whatever custom source, where you may have a GUI that helps in setting nodes and their variables.
+
+The general logic is that for each node you may have to set variables (eventually using different methods) thand include or call classes that make use of these variables.
+You can eventually decide to set all your variables using and external datastore, such as Hiera or Extlookup.
+
+If you choose the approach based on site.pp, (which is the default when you install Puppet) you can find here some sample infrastructure layouts.
+Look in 10_archive/2010 and 10_archive/2011 of the 2011 branch for alternative approaches on how to define nodes using the nodes' inheritance approach (note that this will not work on Puppet Etsy).
+In the toasters/ directory (or the 2011 branch) you find examples of master-less setups that can be used to quickly configure an appliance.
+
+== The example42 module
+The approach used here is minimal since in site.pp are defined only some general variables and nodes.
+
+Most of the logic on what is placed in every node is moved in a "project" module, here called example42 where are defined custom classes, "role" classes (where classes are included for different purposes) and the custom templates and files used for the "example42" project.
+
+This is easily reproducible by an ENC (just redefine the nodes used here and the relevant variables).
+The example42 module is presented as just another module in the Example42 modules set
 
