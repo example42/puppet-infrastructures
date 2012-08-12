@@ -1,132 +1,101 @@
 # INTRODUCTION 
 # /etc/manifest/site.pp is the first file that, by default, the PuppetMaster
-# loads if you don't use an ENC.
+# loads if you don't use an External Node Classifier (ENC)
 #
-# Here you find a sample layout of a Puppet infrastructure based on the Example42 modules
-# We import explicitely various manifests classes placed in /etc/manifests/
-# and modules that can't be autoloaded from your modulepath ( /etc/puppet/modules )
+# The usage on an ENC is in many cases recommended, consider the variables
+# defined here as a sample of the general variables that affect all
+# Example42 modules.
+#
+# This sample site.pp is intended to be used with Example42 Puppet Modules
 
-# GENERAL IMPORTS AND RESOURCE DEFAULTS
-# Example42 common module (contains defines used by other modules that can't autoload)
-# This is kept for backwards compatibility with some modules
-import "common"
-
-# This is the module that contains our customizations:
-# - Our custom roles and baselines, included by the nodes
-# - Our custom classes, autoloaded in $myproject is set to lab42
-# - Our templates and configuration files
-import "example42" 
-
-# General settings for standard types
-Exec { path => "/bin:/sbin:/usr/bin:/usr/sbin" }
-
-# TOP SCOPE VARIABLES
-# Here are valuated all the variables you may want to use to affect module's behaviour
-
-node basenode {
-# If you define  $my_project , custom $project.pp classes are autoloaded
-$my_project = "example42"
-  
-# Activate Automatic monitoring
-  $monitor = "yes"
-# Define what are the monitoring tools to use (can be an array)
-# NOTE: Some of the tools (such as nagios) require storeconfigs
+# Activate automatic monitoring
+  $monitor = true
   $monitor_tool = [ "nagios" , "puppi" ]
 
 # Activate Automatic firewalling
-#  $firewall = "yes"
+#  $firewall = true
 #  $firewall_tool = "iptables"
 #  $firewall_destination = "0/0" # Default is $ip_address
 #  $iptables_block_policy = "accept"
-$iptables_config = "file"
 
 # Activate modules debugging (not too resource intensive and useful)
-#  $debug = "yes"
+#  $debug = true
 
-# Some general variables used by modules
-  $puppet_server = "foreman.lab42.it"
-  $dns_servers = [ "10.42.20.1" , "8.8.8.8" ]
-  $smtp_server = [ "mail.example42.com" ]
+# Activate Puppi integration in modules
+  $puppi = true
 
-# Local root mail is forwarded to $root_email - CHANGE IT!
-  $root_email = "roots@example42.com"
+# PER NODE EXTRA VARIABLES
+# This is a "nodeless configuration example": no nodes are defined. 
+# Some variables are set according to the hostnames 
+# and a "project" class where all the customizations are placed
+# is included at the end (here is example42, change it for your setup)
 
-# Syslog servers. Can be an array.
-  $syslog_server = ["10.42.42.15"]
+# This approach may work if you have a strict naming convention
+# Use is as a refrence on the variables to use in an ENC
 
-# Set proxy, if needed
-#  $proxy_server = "proxy.example42.com:8080"
+  case $::hostname {
+    # Web Servers
+    /^test-web-/: {
+      $role = 'web'
+      $env = 'test'
+    }
 
-# Set your timezone 
-  $timezone = "Europe/Rome"
-#   $ntp_server = "ntp.example42.com"
+    /^web-/: {
+      $role = 'web'
+      $env = 'prod'
+    }
 
-  $update = "no"   # Auto Update packages (yes|no)
+    # Application Servers
+    /^test-as-/: {
+      $role = 'as'
+      $env = 'test'
+    }
 
-# Munin central server
-  $munin_server = "10.42.42.12"
-# Add extra custom plugins
-  $munin_plugins = "yes"
+    /^as-/: {
+      $role = 'as'
+      $env = 'prod'
+    }
 
-# Collectd Central server (here we use unicast networking)
-# Define the server IP (not the hostname)
-  $collectd_server = "10.42.42.16"
+    # Mysql
+    /^test-mysql-/: {
+      $role = 'mysql'
+      $env = 'test'
+    }
 
-# NRPE ACCESS
-  $nrpe_allowed_hosts = "10.42.42.11,10.42.42.36"
-  $nrpe_dont_blame_nrpe = "1"
-  $nrpe_use_ssl = "yes"
-# Nagios servers grouping logic
-   # $nagios_grouplogic = "zone"
+    /^mysql-/: {
+      $role = 'mysql'
+      $env = 'prod'
+    }
 
-# MCollective
-  $mcollective_psk = "42324bws!988!"
-  $mcollective_stomp_host = "mq1.example42.com"
-  $mcollective_stomp_user = "mcollective"
-  $mcollective_stomp_password = "Unf0rg3tt4bl3!"
+    # PuppetMaster
+    /^puppet/: {
+      $role = 'puppet'
+      $env = 'prod'
+    }
 
-# Ldap Authentication
-#  $users_auth = "ldap" # By default we want ldap auth
-#  $users_ldap_servers = ["ldap1.example42.com","ldap2.example42.com"]
-#  $users_ldap_basedn = "dc=example42,dc=com"
-##  $users_ldap_ssl = "yes"
-##  $users_automount = "yes"
+    /^jenkins/: {
+      $role = 'jenkins'
+      $env = 'prod'
+    }
 
-# Yum repos (for Rhel)
-  $yum_extrarepo = [ "epel" , "puppetlabs" ] 
-  $yum_update = "updatesd"
-  $yum_clean_repos = true
+    /^icinga/: {
+      $role = 'icinga'
+      $env = 'prod'
+    }
 
-# Use puppi and activate puppi subclasses in modules
-  $puppi = "yes"
-}
+    /^munin/: {
+      $role = 'munin'
+      $env = 'prod'
+    }
 
-# NODES DEFINITIONS
-# Can be splitted in different files to be imported here
-node 'puppet.example42.com' inherits basenode {
-  include example42::role::puppet
-}
+    default: { 
+      $role = 'default'
+      $env = 'prod'
+    } 
 
-node /^foreman\.*/ inherits basenode {
-  include example42::role::foreman
-}
+  }
 
-node /^web\d+$/ inherits basenode {
-  include example42::role::web
-}
-
-node /^test\.*/ inherits basenode {
-  include example42::role::test
-}
-
-node /^rspec\.*/ inherits basenode {
-  include example42::role::rspec
-}
-
-
-node /^moon\.*/ inherits basenode {
-  include example42::role::ci
-}
+include example42
 
 # :include:README.rdoc
 # :main:__site__::readme
